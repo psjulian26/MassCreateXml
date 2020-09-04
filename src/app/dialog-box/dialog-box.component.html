@@ -1,0 +1,70 @@
+<div>
+<h1 mat-dialog-title><u> <strong>{{action}} Record</strong></u></h1>
+
+<div mat-dialog-content>
+
+    <mat-form-field   *ngIf="action != 'Delete'; else elseTemplate">
+      <!-- <input placeholder="{{action}} Environment" matInput [(ngModel)]="local_data.environment" ngmodel required> -->
+      <mat-select placeholder="{{action}} Environment" [(ngModel)]="local_data.environment">
+        <mat-option  *ngFor="let env of envs" [value]="env.value">
+          {{env.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;&nbsp;
+    <!-- appearance="outline" -->
+    <mat-form-field style="width: 50pt;text-align: center;"  *ngIf="action != 'Delete';">
+      <input  placeholder="{{action}} Job" matInput [(ngModel)]="local_data.job" oninput="this.value = this.value.toUpperCase()" maxlength="1">      
+    </mat-form-field>&nbsp;&nbsp;
+    <mat-form-field style="width: 60pt;text-align: center;"  *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Folder" matInput [(ngModel)]="local_data.folder" oninput="this.value = this.value.toUpperCase()" maxlength="1">
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Job/Folder Name" matInput [(ngModel)]="local_data.foldername" oninput="this.value = this.value.toUpperCase()" maxlength="44" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Folder/Sub-Folder Name" matInput [(ngModel)]="local_data.subfoldername" oninput="this.value = this.value.toUpperCase()" maxlength="34" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Command" matInput [(ngModel)]="local_data.command" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Host(small letter)" matInput [(ngModel)]="local_data.host" oninput="this.value = this.value.toLowerCase()"  required />
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Run As" matInput [(ngModel)]="local_data.runas" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} In Condition (job name only)" matInput [(ngModel)]="local_data.incond" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Description" matInput [(ngModel)]="local_data.description" required>
+    </mat-form-field>&nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Application" matInput [(ngModel)]="local_data.application" required>
+    </mat-form-field>&nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Sub Application" matInput [(ngModel)]="local_data.subapplication" required>
+    </mat-form-field>&nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Smart Folder" matInput [(ngModel)]="local_data.smartfolder" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Sub Folder" matInput [(ngModel)]="local_data.subfolder" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <!-- <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Schedule" matInput [(ngModel)]="local_data.schedule" required>
+    </mat-form-field> &nbsp;&nbsp;
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input placeholder="{{action}} Comment" matInput [(ngModel)]="local_data.comment" required>
+    </mat-form-field>  -->
+
+
+    <ng-template #elseTemplate>
+      Sure to delete this record?
+    </ng-template>
+    <div style="color: red;font-weight:bold;text-align: center;">{{errormsg}}</div>
+</div>
+<div mat-dialog-actions style="text-align: center;">
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

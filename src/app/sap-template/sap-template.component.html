@@ -1,0 +1,134 @@
+<div class="center">      
+   
+    <div style="width: 100%;height: 40px;text-align: left;margin-top: 50px;margin-left: 3px;">
+        <div style="float: left;width: 49%;height: 40px;text-align: left;margin: auto;color: dimgrey;"><h2><strong>SAP Jobs Control-M Template</strong></h2></div>
+        <div style="float: right;width: 50%;height: 40px;text-align: right;">
+            <button style="height: 90%;width: 130px;"  mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Record</button>&nbsp;
+            <button style="height: 90%;width: 130px;" disabled  mat-button (click)="openDialog('Validate',{})" mat-flat-button color="primary">Validate</button>&nbsp;
+            <button style="height: 90%;width: 130px;"  mat-button (click)="generateXML()" mat-flat-button color="primary">Generate XML</button>&nbsp;
+            <a routerLink="/home" routerLinkActive="active"><button style="height: 90%;width: 130px;"  mat-flat-button color="primary">Cancel</button></a>
+        </div>
+    </div>    
+         
+    <div style="margin: auto;">
+            <table  style="table-layout:fixed;" mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">            
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th style="display: none;"  mat-header-cell *matHeaderCellDef>  ID.</th>
+                <td  style="display: none;text-align: center;" mat-cell *matCellDef="let element"> <h5>{{element.id}} </h5></td>
+            </ng-container>
+
+            <!-- Environment -->
+            <ng-container matColumnDef="environment">
+                <th class="thView" style="max-width: 95px;" mat-header-cell *matHeaderCellDef>  Environment </th>
+                <td class="tdView" style="max-width:95px;text-align: center;" mat-cell *matCellDef="let element"><h5>{{element.environment}}</h5></td>
+            </ng-container>
+   
+            <!-- Job --> 
+            <ng-container matColumnDef="job">  
+                <th class="thView" style="width: 60px;" mat-header-cell *matHeaderCellDef> Job Name</th>
+                <td class="tdView" style="max-width:60px ;text-align: center;" mat-cell *matCellDef="let element"><h5>{{element.job}} </h5> </td>
+            </ng-container>
+ 
+            <!-- folder -->
+            <ng-container matColumnDef="folder">
+                <th class="thView" style="width: 60px;" mat-header-cell *matHeaderCellDef> Folder</th>
+                <td class="tdView" style="max-width:60px ;text-align: center;" mat-cell *matCellDef="let element"><h5>{{element.folder}}</h5>  </td>
+            </ng-container>
+
+            <!-- foldername --> 
+            <ng-container matColumnDef="foldername">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef>  Job/ Folder Name</th>
+                <td class="tdView" style="max-width:100px ;" mat-cell *matCellDef="let element"> <h5> {{element.foldername}}</h5> </td>
+            </ng-container>
+
+            <!-- subfoldername -->
+            <ng-container matColumnDef="subfoldername">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef> Folder/ Sub-Folder Name</th>
+                <td class="tdView" style="max-width:100px ;" mat-cell *matCellDef="let element"><h5> {{element.subfoldername}} </h5></td>
+            </ng-container>
+
+            <!-- command -->
+            <ng-container matColumnDef="command">
+                <th class="thView" style="width: 80px;" mat-header-cell *matHeaderCellDef> Command</th>
+                <td class="tdView" style="max-width:80px ;" mat-cell *matCellDef="let element"> <h5>{{element.command}}</h5> </td>
+            </ng-container>
+
+            <!-- host -->
+            <ng-container matColumnDef="host">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef> Host<br> (small letter)</th>
+                <td class="tdView" style="max-width:100px ;" mat-cell *matCellDef="let element"><h5> {{element.host}}</h5> </td>
+            </ng-container>
+
+            <!-- runas -->
+            <ng-container matColumnDef="runas">
+                <th class="thView" style="width: 80px;" mat-header-cell *matHeaderCellDef> Run As</th>
+                <td class="tdView" style="max-width:80px ;" mat-cell *matCellDef="let element"> <h5>{{element.runas}}</h5> </td>
+            </ng-container>
+
+            <!-- in conditon -->
+            <ng-container matColumnDef="incond">
+                <th class="thView" style="width: 130px;" mat-header-cell *matHeaderCellDef> In Condition <br> (job name only)</th>
+                <td class="tdView" style="max-width:130px;" mat-cell *matCellDef="let element"> <h5>{{element.incond}}</h5> </td>
+            </ng-container>
+
+            <!-- Description -->
+            <ng-container matColumnDef="description">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef> Description</th>
+                <td class="tdView" style="max-width:100px;" mat-cell *matCellDef="let element"> <h5>{{element.description}}</h5> </td>
+            </ng-container>
+
+            <!-- Application -->
+            <ng-container matColumnDef="application">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef> Application</th>
+                <td class="tdView" style="max-width:100px ;" mat-cell *matCellDef="let element"><h5> {{element.application}}</h5> </td>
+            </ng-container>
+
+            <!--Sub Application -->
+            <ng-container matColumnDef="subapplication">
+                <th class="thView" style="width: 100px;" mat-header-cell *matHeaderCellDef> Sub Application</th>
+                <td class="tdView" style="max-width:100px ;" mat-cell *matCellDef="let element"> <h5> {{element.subapplication}}</h5> </td>
+            </ng-container>
+
+            <!-- Smart Folder -->
+            <ng-container matColumnDef="smartfolder">
+                <th class="thView" style="width: 80px;" mat-header-cell *matHeaderCellDef> Smart Folder</th>
+                <td class="tdView" style="max-width:80px;" mat-cell *matCellDef="let element"> <h5>{{element.smartfolder}}</h5> </td>
+            </ng-container>
+
+            <!-- Sub Folder -->
+            <ng-container matColumnDef="subfolder">
+                <th class="thView" style="width: 70px;" mat-header-cell *matHeaderCellDef> Sub Folder</th>
+                <td class="tdView" style="max-width:70px;" mat-cell *matCellDef="let element"> <h5>{{element.subfolder}}</h5> </td>
+            </ng-container>
+
+            <!-- Schedule -->
+            <!-- <ng-container matColumnDef="schedule">
+                <th class="thView" style="width: 90px;" mat-header-cell *matHeaderCellDef> Schedule</th>
+                <td class="tdView" style="max-width:90px;" mat-cell *matCellDef="let element"> <h5>{{element.schedule}}</h5> </td>
+            </ng-container> -->
+
+            <!-- Comment -->
+            <!-- <ng-container matColumnDef="comment">
+                <th class="thView" style="width: 90px;" mat-header-cell *matHeaderCellDef> Comment</th>
+                <td class="tdView" style="max-width:90px;" mat-cell *matCellDef="let element"> <h5>{{element.comment}}</h5> </td>
+            </ng-container> -->
+
+  
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th class="thView" style="width: 50px;"  mat-header-cell *matHeaderCellDef> Action</th>
+                <td  style="border-style: ridge;border-width: 0.1pt;border-color: black;text-align:center;word-wrap:break-word;padding: 1px;"  mat-cell *matCellDef="let element" class="action-link"> 
+                    <h5> <a (click)="openDialog('Update',element)">Edit</a> | 
+                    <a (click)="openDialog('Delete',element)">Delete</a>  </h5>
+                </td>
+            </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+
+</div>

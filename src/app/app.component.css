@@ -1,0 +1,37 @@
+.center {
+    margin: auto;
+    width: 98%;
+    /* border: 3px solid green; */
+    padding: 2px;
+  }
+.thView{
+    /* margin:auto; */
+    /* display: flex; */
+    
+    text-align: center;
+    /* vertical-align: middle; */
+    border-style: ridge;
+    border-width: 0.1pt;
+    border-color:rgb(88, 84, 84) ;
+    background-color: rgb(4, 76, 164) ;
+    color: whitesmoke;
+    /* padding-top:6px ; */
+    margin-top: 5px;
+    font-weight: normal;
+    font-size: small;
+    
+}
+.tdView{
+    border-style: ridge;
+    border-width: 0.1pt;
+    border-color: rgb(88, 84, 84) ;
+    text-align:left;
+    word-wrap:break-word;    
+    padding-left: 2px;
+}
+.rCor{
+border-radius: 25px;
+border: 2px solid rgb(0, 0, 0);
+padding: 10px;
+
+}

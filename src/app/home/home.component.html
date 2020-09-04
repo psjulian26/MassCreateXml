@@ -1,0 +1,27 @@
+<div>
+    <br>
+    <div class="rCorner">
+        <div>
+            <br>
+            <label id="example-radio-group-label" class="lblFormat">JOB TYPE:</label>
+            <mat-radio-group  aria-labelledby="example-radio-group-label"  class="example-radio-group"  [(ngModel)]="SelJob">
+                <mat-radio-button style="font-weight: bold;" class="example-radio-button" *ngFor="let job of Jobs" [value]="job">
+                    {{job}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <label id="example-radio-group-label" class="lblFormat">ENVIRONMENT:</label>
+            <mat-radio-group  aria-labelledby="example-radio-group-label"  class="example-radio-group"  [(ngModel)]="SelEnv">
+                <mat-radio-button style="font-weight: bold;" class="example-radio-button" *ngFor="let env of Envs" [value]="env">
+                {{env}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <!-- <div>Selected Job: {{SelJob}} and selected environment is {{SelEnv}}</div>  -->
+            <div style="color: red;font-weight:bold;text-align: center;">{{errormsg}}</div>
+        </div>
+    </div>
+    <br>
+    
+    <div style="text-align: center;"> <button style="height: 90%;width: 130px;"  mat-button (click)="validateMe()"  mat-flat-button color="primary">Open Template</button></div>
+</div>
+
