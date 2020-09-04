@@ -45,7 +45,6 @@ export class SapTemplateComponent {
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
 
   constructor(public dialog: MatDialog) {}
- 
 
 
   generateXML(){   
