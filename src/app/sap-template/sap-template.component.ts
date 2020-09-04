@@ -4,6 +4,10 @@ import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 
+
+var dStr='<?xml version="1.0" encoding="utf-8"?> \n <DEFTABLE>';
+
+
 export interface UsersData {  
   id: number;
   environment: string;
@@ -41,19 +45,34 @@ export class SapTemplateComponent {
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
 
   constructor(public dialog: MatDialog) {}
+ 
 
-  generateXML(){
-    
+
+  generateXML(){   
+
+
     if (this.dataSource.length==0) {
       console.log('No Data to Generate XML');
     }else{
       console.log('Generate XML');
       console.log(this.dataSource);
       
+      this.writeContents(dStr, 'Output XML'+'.xml', 'text/plain');
+      
+      
     }
-
      
   }
+
+  writeContents(content, fileName, contentType) {
+    var a = document.createElement('a');
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
+
   openDialog(action,obj) {
     obj.action = action;
     var dWith="";
